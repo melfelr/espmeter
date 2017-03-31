@@ -14,6 +14,7 @@ import os, sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+BASE_PROJECT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
 
 sys.path.insert(0, os.path.join(BASE_DIR))
 
@@ -120,6 +121,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_PROJECT_DIR, 'static')
 STATIC_URL = '/static/'
 
 try:
