@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API real-time dashboard</title>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var sensor_types = {
+                1: '\xB0',
+                2: '%'
+            }
+            var webSocket = new WebSocket('ws://' + window.location.host + '/');
+            webSocket.onmessage = function(message) {
+                var data = JSON.parse(message.data);
+                var stream_area = $('#livestream-' + data.sensor_id);
+                stream_area.html('<b>'+ data.value.concat(sensor_types[data.sensor_type]) + '</b>')
+            }
+        })
+    </script>
+</head>
+<body>
+
+{% for sensor in sensors %}
+    <span style="font-weight: bold;">{{ sensor.name|title }}</span><div id="livestream-{{ sensor.id }}"><b>{{ sensor.last_log.value }}</b></div>
+{% endfor %}
+
+</body>
+</html>

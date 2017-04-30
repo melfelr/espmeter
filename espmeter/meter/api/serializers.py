@@ -18,6 +18,7 @@ class LogEntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = LogEntry
         fields = (
+            'id',
             'sensor',
             'value'
         )
